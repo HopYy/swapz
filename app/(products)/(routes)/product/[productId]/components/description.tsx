@@ -26,7 +26,7 @@ export const Description: React.FC<DescriptionProps> = ({ data }) => {
     }
 
     setIsOverflowing(false);
-  }, [isOverflowActive]);
+  }, []);
 
   return (
     <div className="w-full py-10">
