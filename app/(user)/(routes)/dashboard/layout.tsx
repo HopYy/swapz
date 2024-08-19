@@ -4,20 +4,20 @@ import { auth } from '@clerk/nextjs';
 import { DashboardSidebar } from './components/dashboard-sidebar';
 
 export default function HomepageLayout({
-    children
+  children,
 }: {
-    children: React.ReactNode
+  children: React.ReactNode;
 }) {
-    const { userId } = auth()
+  const { userId } = auth();
 
-    if(!userId) {
-        redirect('/sign-in')
-    } 
+  if (!userId) {
+    redirect('/sign-in');
+  }
 
-    return  (
-        <>  
-            <DashboardSidebar />
-            {children}
-        </>
-    )
+  return (
+    <>
+      <DashboardSidebar />
+      {children}
+    </>
+  );
 }

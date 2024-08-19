@@ -1,37 +1,43 @@
-export const getSort = (sort?: string): Record<string, string> | Record<string, Record<string, string>> => {
+export const getSort = (
+  sort?: string
+): Record<string, string> | Record<string, Record<string, string>> => {
   switch (sort) {
     case 'price_low':
-      return { price: 'asc' }
+      return { price: 'asc' };
     case 'price_high':
-      return { price: 'desc' }
+      return { price: 'desc' };
     case 'newly_added':
-      return { createdAt: 'desc' }
+      return { createdAt: 'desc' };
     case 'top_liked':
-      return { likes: { _count: 'desc' } }
+      return { likes: { _count: 'desc' } };
     default:
-      return { createdAt: 'asc' }
+      return { createdAt: 'asc' };
   }
-}
+};
 
-export const getPrice = (minPrice: string | null, maxPrice: string | null): Record<string, number> => {
-  const min = minPrice ? parseFloat(minPrice) : null
-  const max = maxPrice ? parseFloat(maxPrice) : null
+export const getPrice = (
+  minPrice: string | null,
+  maxPrice: string | null
+): Record<string, number> => {
+  const min = minPrice ? parseFloat(minPrice) : null;
+  const max = maxPrice ? parseFloat(maxPrice) : null;
 
-  const price: Record<string, number> = {}
+  const price: Record<string, number> = {};
 
   if (min !== null) {
-    price.gte = min
+    price.gte = min;
   }
 
   if (max !== null) {
-    price.lte = max
+    price.lte = max;
   }
 
-  return price
-}
+  return price;
+};
 
 export const getCategory = (paramsCategory: string): string | undefined => {
   const decodedCategory = decodeURIComponent(paramsCategory);
-  return decodedCategory && decodedCategory !== "search" ? decodedCategory : undefined;
-}
-
+  return decodedCategory && decodedCategory !== 'search'
+    ? decodedCategory
+    : undefined;
+};

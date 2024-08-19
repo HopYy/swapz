@@ -1,7 +1,5 @@
-import { NotFoundResponse } from "@/components/errors-response"
+import { NotFoundResponse } from '@/components/errors-response';
 
 export default function NotFound() {
-    return (
-        <NotFoundResponse />
-    )
+  return <NotFoundResponse />;
 }

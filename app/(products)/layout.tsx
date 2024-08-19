@@ -1,14 +1,14 @@
-import { Sidebar } from '@/components/sidebar/sidebar'
+import { Sidebar } from '@/components/sidebar/sidebar';
 
 export default function HomepageLayout({
-    children
+  children,
 }: {
-    children: React.ReactNode
+  children: React.ReactNode;
 }) {
-    return  (
-        <>  
-            <Sidebar />
-            {children}
-        </>
-    )
+  return (
+    <>
+      <Sidebar />
+      {children}
+    </>
+  );
 }

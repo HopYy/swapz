@@ -1,7 +1,5 @@
-import { CategoriesSkeleton } from "@/components/loading"
+import { CategoriesSkeleton } from '@/components/loading';
 
 export default function Loading() {
-    return (
-        <CategoriesSkeleton />
-    )
+  return <CategoriesSkeleton />;
 }

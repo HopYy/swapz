@@ -1,22 +1,26 @@
-import { useState } from "react"
-import { useSearchParams } from "next/navigation"
-import { CheckIcon, ChevronDown } from "lucide-react"
+import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { CheckIcon, ChevronDown } from 'lucide-react';
 
-import { cn } from "@/utils/cn"
-import { Button } from "@/components/ui/button"
-import { Command, CommandGroup, CommandItem } from "@/components/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { cn } from '@/utils/cn';
+import { Button } from '@/components/ui/button';
+import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface Option {
-  label: string
-  query: string
+  label: string;
+  query: string;
 }
 
 interface OptionsFilterBoxProps {
-  options: Option[]
-  parameterName: string
-  placeholder: string
-  onChange: (name: string, value: string) => void
+  options: Option[];
+  parameterName: string;
+  placeholder: string;
+  onChange: (name: string, value: string) => void;
 }
 
 export const OptionsFilterBox: React.FC<OptionsFilterBoxProps> = ({
@@ -25,27 +29,27 @@ export const OptionsFilterBox: React.FC<OptionsFilterBoxProps> = ({
   placeholder,
   onChange,
 }) => {
-  const searchParams = useSearchParams()
-  const params = new URLSearchParams(searchParams)
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
 
-  const [open, setOpen] = useState(false)
-  const parameterValue = params.get(parameterName)
-  const value = options.find((option) => option.query === parameterValue)
+  const [open, setOpen] = useState(false);
+  const parameterValue = params.get(parameterName);
+  const value = options.find((option) => option.query === parameterValue);
 
   const handleSelect = (currentValue: string) => {
-    const option = options.find((opt) => opt.label === currentValue)
-    onChange(parameterName, option ? option.query : "")
-    setOpen(false)
-  }
+    const option = options.find((opt) => opt.label === currentValue);
+    onChange(parameterName, option ? option.query : '');
+    setOpen(false);
+  };
 
   const select = (currentValue: string) => {
     if (currentValue !== value?.label) {
-      handleSelect(currentValue)
+      handleSelect(currentValue);
     } else {
-      onChange(parameterName, "")
-      setOpen(false)
+      onChange(parameterName, '');
+      setOpen(false);
     }
-  }
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -72,8 +76,8 @@ export const OptionsFilterBox: React.FC<OptionsFilterBoxProps> = ({
                 {option.label}
                 <CheckIcon
                   className={cn(
-                    "ml-auto h-4 w-4",
-                    value?.label === option.label ? "opacity-100" : "opacity-0"
+                    'ml-auto h-4 w-4',
+                    value?.label === option.label ? 'opacity-100' : 'opacity-0'
                   )}
                 />
               </CommandItem>
@@ -82,5 +86,5 @@ export const OptionsFilterBox: React.FC<OptionsFilterBoxProps> = ({
         </Command>
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};

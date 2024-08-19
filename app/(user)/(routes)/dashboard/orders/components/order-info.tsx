@@ -1,36 +1,35 @@
-import { useEffect } from "react"
+import { useEffect } from 'react';
 
-import { ModalOrderItem } from "@/components/modals/modal-order-product"
-import { useToggleModal } from "@/hooks/use-toggle-modal"
-import { useOrder } from "@/hooks/use-get-order"
+import { ModalOrderItem } from '@/components/modals/modal-order-product';
+import { useToggleModal } from '@/hooks/use-toggle-modal';
+import { useOrder } from '@/hooks/use-get-order';
 
 export const OrderInfo = () => {
-    const isOpen = useToggleModal((state) => state.isOpen)
-    const open = useToggleModal((state) => state.open)
-    const close = useToggleModal((state) => state.close)
-    const order = useOrder((state) => state.order)
-    const setOrder = useOrder((state) => state.setOrder)
-    
-    useEffect(() => {
-        if(order) {
-            open()
-        } else {
-            close()
-        }
-    }, [order])
+  const isOpen = useToggleModal((state) => state.isOpen);
+  const open = useToggleModal((state) => state.open);
+  const close = useToggleModal((state) => state.close);
+  const order = useOrder((state) => state.order);
+  const setOrder = useOrder((state) => state.setOrder);
 
-    useEffect(() => {
-        if(!isOpen) {
-            setOrder(undefined)
-        }
-    }, [isOpen])
-
-
-    if(!isOpen && !order) {
-        return null
+  useEffect(() => {
+    if (order) {
+      open();
+    } else {
+      close();
     }
+  }, [order, close, open]);
 
-    if (order && isOpen) {
-        return <ModalOrderItem orderItem={order} />;
+  useEffect(() => {
+    if (!isOpen) {
+      setOrder(undefined);
     }
-}
+  }, [isOpen, setOrder]);
+
+  if (!isOpen && !order) {
+    return null;
+  }
+
+  if (order && isOpen) {
+    return <ModalOrderItem orderItem={order} />;
+  }
+};
