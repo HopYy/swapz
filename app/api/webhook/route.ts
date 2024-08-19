@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       },
     });
 
-    cart.map(async ({ product }) => {
+    cart.map(async ({ product }: any) => {
       await prismadb.product.update({
         where: {
           id: product.id,

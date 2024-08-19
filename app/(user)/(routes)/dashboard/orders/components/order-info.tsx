@@ -25,11 +25,9 @@ export const OrderInfo = () => {
     }
   }, [isOpen, setOrder]);
 
-  if (!isOpen && !order) {
+  if (!isOpen || !order) {
     return null;
   }
 
-  if (order && isOpen) {
-    return <ModalOrderItem orderItem={order} />;
-  }
+  return <ModalOrderItem orderItem={order} />;
 };

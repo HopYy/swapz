@@ -5,6 +5,7 @@ import prismadb from '@/utils/prismadb';
 import { ProductCard } from '@/components/products/components/product-card';
 import { NoProducts } from '@/components/errors-response';
 import { Pagination } from '@/components/products/components/pagination';
+import { Product } from '@/utils/types';
 
 export default async function MyProducts({
   searchParams,
@@ -48,7 +49,7 @@ export default async function MyProducts({
         </div>
         {products.length > 0 && (
           <div className="gap-2 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-            {products.map((product) => (
+            {products.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

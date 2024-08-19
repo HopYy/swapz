@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Product } from '@/utils/types';
 import { ProductImages } from '@/components/ui/product-images';
@@ -12,7 +11,7 @@ interface ProductCartProps {
 
 export const ProductCart: React.FC<ProductCartProps> = ({ id, product }) => {
   if (!product) {
-    return;
+    return null; 
   }
 
   const {

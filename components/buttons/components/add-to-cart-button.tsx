@@ -1,5 +1,3 @@
-'use client';
-
 import { useUser } from '@clerk/clerk-react';
 import { useRouter } from 'next/navigation';
 
@@ -22,6 +20,7 @@ export const ButtonCart: React.FC<AddProductToCartProps> = ({ product }) => {
   const handleAction = async () => {
     if (!user) {
       push('/sign-in');
+      return;
     }
     if (user && !loading) {
       const method = reaction.isReacted ? 'delete' : 'post';
@@ -32,18 +31,20 @@ export const ButtonCart: React.FC<AddProductToCartProps> = ({ product }) => {
     }
   };
 
+  if (product.sold) {
+    return null;
+  }
+
   return (
-    !product.sold && (
-      <Button
-        className="flex justify-center items-center gap-2"
-        disabled={loading}
-        onClick={handleAction}
-      >
-        <ShoppingBag size={20} color="white" />
-        <span className="text-white text-sm font-semibold tracking-wide">
-          {reaction.isReacted ? 'Remove from cart' : 'Add to cart'}
-        </span>
-      </Button>
-    )
+    <Button
+      className="flex justify-center items-center gap-2"
+      disabled={loading}
+      onClick={handleAction}
+    >
+      <ShoppingBag size={20} color="white" />
+      <span className="text-white text-sm font-semibold tracking-wide">
+        {reaction.isReacted ? 'Remove from cart' : 'Add to cart'}
+      </span>
+    </Button>
   );
 };

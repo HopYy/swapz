@@ -35,7 +35,7 @@ export async function POST(req: Request) {
       postalCode,
       isPaid: false,
       orderItems: {
-        create: cart.map(({ product }) => ({
+        create: cart.map(({ product }: any) => ({
           product: {
             connect: {
               id: product.id,
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
 
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-    cart.forEach(({ product }) => {
+    cart.forEach(({ product }: any) => {
       line_items.push({
         quantity: 1,
         price_data: {
